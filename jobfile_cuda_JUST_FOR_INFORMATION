@@ -1,0 +1,19 @@
+#!/bin/bash -l
+
+#SBATCH --partition=gpu02_queue
+#SBATCH --nodes=1
+#SBATCH --time=00:10:00
+#SBATCH --job-name=LaplCuda
+#SBATCH --ntasks-per-node=1
+#SBATCH --gres=gpu
+
+echo "SLURM_JOBID="$SLURM_JOBID
+echo "SLURM_JOB_NODELIST"=$SLURM_JOB_NODELIST
+echo "SLURM_NNODES"=$SLURM_NNODES
+echo "SLURM_TASKS_PER_NODE"=$SLURM_TASKS_PER_NODE
+echo "working directory = "$SLURM_SUBMIT_DIR
+echo ""
+
+./build/bin/Laplace2D_cuda
+
+# Please note that you can't run this jobfile! The current user does NOT have access to the gpu02_queue.
